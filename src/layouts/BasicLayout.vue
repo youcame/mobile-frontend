@@ -31,7 +31,9 @@ import Index from "../pages/Index.vue";
 
 const router = useRouter();
 const onChange = (index) => {};
-const onClickLeft = () => alert("返回");
+const onClickLeft = () => {
+  router.push("/")
+};
 const onClickRight = () => {
   router.push("/search")
 };
