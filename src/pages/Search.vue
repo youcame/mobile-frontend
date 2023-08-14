@@ -10,9 +10,10 @@
     />
   </form>
   <van-divider content-position="left">已选标签</van-divider>
-  <van-row gutter="16">
-    <van-col
-    <van-tag v-for="tag in activeIds" closeable size="small" type="success" @close="doClose(tag)">{{ tag }}</van-tag>
+  <van-row gutter="8" style="{padding: 16px}">
+    <van-col v-for="tag in activeIds">
+      <van-tag closeable size="small" type="success" @close="doClose(tag)">{{ tag }}</van-tag>
+    </van-col>
   </van-row>
   <div></div>
   <van-tree-select
@@ -27,19 +28,30 @@ import {ref} from 'vue';
 import {showToast} from 'vant';
 //搜索
 const searchText = ref('');
-const onSearch = (val) => showToast(val);
+//搜索函数
+const onSearch = (val) => {
+  tags.value = originTags.map(parentItem => {
+    const temp = {...parentItem};
+    temp.children = temp.children.filter(item => item.text.includes(searchText.value));
+    return temp
+  })
+};
+//取消
 const onCancel = () => {
   searchText.value = '';
+  tags.value = originTags;
 };
 //分类选择
 const activeIds = ref([]);
 const activeIndex = ref(0);
+//关闭
 const doClose = (tag) => {
   activeIds.value = activeIds.value.filter(item => {
     return item !== tag
   })
 }
-const tags = [
+
+const originTags = [
   {
     text: '性别',
     children: [
@@ -55,7 +67,8 @@ const tags = [
       {text: '洛天依', id: '洛天依'},
     ],
   },
-];
+]
+let tags = ref(originTags);
 
 
 </script>
