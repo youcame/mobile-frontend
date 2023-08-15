@@ -1,5 +1,5 @@
 <template>
-  <van-cell title="昵称" to="/user/edit" :value="user.username" is-link />
+  <van-cell title="昵称" to="/user/edit" :value="user.username" is-link @click="toEdit('username','昵称',user.username)"/>
   <van-cell title="账户" :value="user.userAccount" />
   <van-cell title="性别" to="/user/edit" :value="user.gender === 0 ? '男' : '女'" is-link />
   <van-cell title="头像" to="/user/edit" :value="user.avatarUrl" is-link >
@@ -10,7 +10,10 @@
   <van-cell title="创建时间" :value="user.createTime.toISOString()"/>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 const user = {
   id: 1,
   username: 'ice',
@@ -23,6 +26,16 @@ const user = {
   userRole: 1,
   createTime: new Date(),
 };
+const toEdit = (editKey: string, editName: string,currentValue: string) => {
+  router.push({
+    path: "/user/edit",
+    query: {
+      editName,
+      editKey,
+      currentValue,
+    }
+  })
+}
 </script>
 
 <style scoped>

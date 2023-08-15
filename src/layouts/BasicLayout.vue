@@ -32,7 +32,7 @@ import Index from "../pages/Index.vue";
 const router = useRouter();
 const onChange = (index) => {};
 const onClickLeft = () => {
-  router.push("/")
+  router.back();
 };
 const onClickRight = () => {
   router.push("/search")
