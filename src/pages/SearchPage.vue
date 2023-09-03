@@ -15,7 +15,6 @@
       <van-tag closeable size="small" type="success" @close="doClose(tag)">{{ tag }}</van-tag>
     </van-col>
   </van-row>
-  <div></div>
   <van-tree-select
       v-model:active-id="activeIds"
       v-model:main-active-index="activeIndex"
