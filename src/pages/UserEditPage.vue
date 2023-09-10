@@ -16,10 +16,13 @@
 
 <script setup lang="ts">
 
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {ref} from "vue";
+import myAxios from "../plungins/myAxios.js";
+import {showToast, Toast} from "vant";
 
 const route = useRoute();
+const router = useRouter();
 const editUser = ref({
   editName: route.query.editName,
   editKey: route.query.editKey,
@@ -27,7 +30,18 @@ const editUser = ref({
 })
 console.log(route.query);
 
-const onSubmit = (values) =>{
+const onSubmit = async (values) =>{
+  const res = await myAxios.post('/user/update',{
+    'id': 1,
+    [editUser.value.editKey]: editUser.value.currentValue,
+  })
+  if(res?.code === 0 && res.data === true){
+    showToast("成功");
+    router.back();
+  }
+  else{
+    showToast("失败了")
+  }
   console.log(values)
 }
 </script>

@@ -20,12 +20,26 @@
       v-model:main-active-index="activeIndex"
       :items="tags"
   />
+  <div style="padding: 20px">
+    <van-button plain type="primary" loading-text="搜索中" @click="getResult" block>搜索</van-button>
+  </div>
 </template>
 
 <script setup>
 import {ref} from 'vue';
 import {showToast} from 'vant';
-//搜索
+import {useRouter} from "vue-router";
+const router = useRouter();
+//搜索结果
+const getResult = () =>{
+  router.push({
+    path: 'user/list',
+    query: {
+      tags: activeIds.value,
+    }
+  })
+}
+//搜索标签
 const searchText = ref('');
 //搜索函数
 const onSearch = (val) => {
