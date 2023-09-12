@@ -8,28 +8,20 @@
     </van-cell>
     <van-cell title="电话" to="/user/edit" :value="user.phone" is-link />
     <van-cell title="邮箱" to="/user/edit" :value="user.email" is-link />
-    <van-cell title="创建时间" :value="user.createTime.toISOString()"/>
+    <van-cell title="创建时间" :value="user.createTime"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
-import myAxios from "../plungins/myAxios.js";
-import {showToast} from "vant";
 import {getCurrentUser} from "../services/user";
 
 const router = useRouter();
 const user = ref('')
 onMounted(async ()=>{
   const res = await getCurrentUser();
-  if(res.code ===0){
-    user.value = res.data;
-    showToast("成功")
-  }
-  else{
-    showToast("失败")
-  }
+  user.value = res;
 })
 
 const toEdit = (editKey: string, editName: string,currentValue: string) => {
