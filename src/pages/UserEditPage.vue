@@ -17,10 +17,11 @@
 <script setup lang="ts">
 
 import {useRoute, useRouter} from "vue-router";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import myAxios from "../plungins/myAxios.js";
 import {showToast, Toast} from "vant";
-
+import {getCurrentUser} from "../services/user";
+const user = ref('')
 const route = useRoute();
 const router = useRouter();
 const editUser = ref({
@@ -29,10 +30,13 @@ const editUser = ref({
   currentValue: route.query.currentValue,
 })
 console.log(route.query);
-
-const onSubmit = async (values) =>{
+onMounted(async () =>{
+  const res = await getCurrentUser()
+  user.value = res
+})
+const onSubmit = async () =>{
   const res = await myAxios.post('/user/update',{
-    'id': 1,
+    'id': user.value.id,
     [editUser.value.editKey]: editUser.value.currentValue,
   })
   if(res?.code === 0 && res.data === true){
@@ -42,7 +46,6 @@ const onSubmit = async (values) =>{
   else{
     showToast("失败了")
   }
-  console.log(values)
 }
 </script>
 
