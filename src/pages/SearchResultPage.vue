@@ -1,17 +1,5 @@
 <template>
-  <van-card
-      v-for="user in userList"
-      :desc="user.profile"
-      :title="user.username"
-      :thumb="user?.avatarUrl"
-  >
-    <template #tags>
-      <van-tag plain type="primary" v-for="tag in user.tags" style="margin-right: 4px;margin-top: 4px">{{tag}}</van-tag>
-    </template>
-    <template #footer>
-      <van-button size="mini">查看详情</van-button>
-    </template>
-  </van-card>
+  <user-card-list :user-list="userList"/>
 
   <van-empty v-if="!userList || userList.length < 1" description="什么也没搜到哟~"/>
 </template>
@@ -25,19 +13,6 @@ import qs from 'qs';
 
 const route = useRoute();
 const {tags} = route.query;
-
-const mockUser = {
-  id: 12345,
-  username: 'huang',
-  profile: '这是个简介',
-  userAccount: 'admin',
-  gender: 1,
-  phone: 12345,
-  tags: ['东方','洛天依'],
-  userStatus: 0,
-  userRole: 1,
-  avatarUrl: 'https://fastly.jsdelivr.net/npm/@vant/assets/logo.png',
-};
 const userList = ref([])
 
 onMounted(async () => {

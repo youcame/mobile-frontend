@@ -15,3 +15,5 @@ type UserType = {
     createTime?: Date;
     userRole?: number;
 };
+
+export default UserType;
