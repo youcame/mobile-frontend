@@ -4,15 +4,18 @@
   <van-empty v-if="!userList || userList.length < 1" description="什么都没有哦~"/>
 </template>
 
-<script setup >
+<script setup lang="ts">
 import {onMounted, ref} from "vue";
 import myAxios from "../plungins/myAxios.js";
 import {showToast} from "vant";
 import UserCardList from "../components/UserCardList.vue";
+import {getCurrentUser} from "../services/user.js";
+import UserType from "../models/user";
 
 const userList = ref([])
 
 onMounted(async () => {
+  const currentUser: UserType = await getCurrentUser();
   const userListData = await myAxios.get('/user/recommend',{
     params: {
       pageSize: 8,

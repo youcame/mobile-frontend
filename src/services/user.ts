@@ -5,7 +5,6 @@ import {useRouter} from "vue-router";
 export const getCurrentUser = async () =>{
     const router = useRouter();
     const res = await myAxios.get('/user/current')
-
     if(res.code === 0 ){
         showToast("成功")
         return res.data
