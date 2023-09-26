@@ -27,7 +27,7 @@
 
 import {showToast} from "vant";
 import {useRouter} from "vue-router";
-import Index from "../pages/Index.vue";
+import Index from "../pages/user/Index.vue";
 
 const router = useRouter();
 const onChange = (index) => {};

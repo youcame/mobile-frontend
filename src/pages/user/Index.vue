@@ -6,11 +6,11 @@
 
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
-import myAxios from "../plungins/myAxios.js";
+import myAxios from "../../plungins/myAxios.js";
 import {showToast} from "vant";
-import UserCardList from "../components/UserCardList.vue";
-import {getCurrentUser} from "../services/user.js";
-import UserType from "../models/user";
+import UserCardList from "../../components/UserCardList.vue";
+import {getCurrentUser} from "../../services/user";
+import UserType from "../../models/user";
 
 const userList = ref([])
 
