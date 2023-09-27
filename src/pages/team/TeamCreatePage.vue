@@ -15,8 +15,20 @@
           label="最大人数"
           required
           placeholder="请输入队伍最大人数"
-          :rules="[{required: true,message: '请填写最大用户人数'},{max: 10,message: '最多不超过十人'},{min: 1,message: '最少不低于1人'}]"
+          :rules="[{required: true,message: '请填写最大用户人数'},{pattern,message: '人数在1-10人之间'}]"
       />
+      <van-field
+          v-model="formValue.expireTime"
+          is-link
+          readonly
+          name="datePicker"
+          label="过期时间"
+          placeholder="点击选择时间"
+          @click="showPicker = true"
+      />
+      <van-popup v-model:show="showPicker" position="bottom">
+        <van-date-picker @confirm="onConfirm" @cancel="showPicker = false" :min-date="minDate"/>
+      </van-popup>
       <van-field
           v-model="formValue.description"
           required
@@ -60,30 +72,47 @@
 import {ref, watch} from "vue";
 import myAxios from "../../plungins/myAxios.js";
 import {showToast} from "vant";
+import {useRouter} from "vue-router";
+
   const check = ref('1');
   const initValue = {
     "description": "",
     "expireTime": "",
-    "maxNum": 0,
+    "maxNum": null,
     "name": "",
     "password": "",
     "status": 0
   }
+  const router = useRouter();
   let formValue = ref({...initValue})
   const onSubmit= async (value) => {
-    const res = await myAxios.post('/team/add', {
-      "description": formValue.value.description,
-      "expireTime": formValue.value.expireTime,
-      "maxNum": formValue.value.expireTime,
-      "name": formValue.value.name,
-      "password": formValue.value.name,
-      "status": parseInt(formValue.value.status)
-    })
-    if(res.code===0)showToast("添加队伍成功")
+    const postData = {
+      ...formValue.value,
+      "status": parseInt(formValue.value.status),
+    }
+    const res = await myAxios.post('/team/add', postData)
+    if(res.code===0){
+      showToast("添加队伍成功")
+      router.push({
+        path: '/team',
+        replace: true
+      })
+    }
     else{
-      showToast("添加队伍失败",res?.message)
+      showToast(`添加队伍失败,${res?.description}`)
     }
   }
+
+  //时间选择器
+  const minDate = new Date();
+  minDate.setDate(minDate.getDate()+1)
+  const showPicker = ref(false);
+  const onConfirm = ({ selectedValues }) => {
+    formValue.value.expireTime = selectedValues.join('-');
+    showPicker.value = false;
+  };
+  //校验最大人数
+  const pattern = /^(1[0-9]|20|[1-9])$/
 </script>
 
 <style scoped>
