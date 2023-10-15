@@ -18,7 +18,7 @@
 
 import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
-import myAxios from "../../plungins/myAxios.js";
+import myAxios from "../../plugins/myAxios.js";
 import {showToast, Toast} from "vant";
 import {getCurrentUser} from "../../services/user";
 const user = ref('')

@@ -1,4 +1,4 @@
-import myAxios from "../plungins/myAxios.js";
+import myAxios from "../plugins/myAxios.js";
 import {showToast} from "vant";
 import {useRoute, useRouter} from "vue-router";
 

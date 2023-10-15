@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
-import myAxios from "../../plungins/myAxios.js";
+import myAxios from "../../plugins/myAxios.js";
 import {showToast} from "vant";
 import UserCardList from "../../components/UserCardList.vue";
 import {getCurrentUser} from "../../services/user";

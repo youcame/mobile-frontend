@@ -1,7 +1,7 @@
 <template>
   <div id="teamButton">
     <team-card-list :team-list="teamList" />
-    <van-button plain type="primary" @click="joinTeam">加入队伍</van-button>
+    <van-button plain type="primary" @click="joinTeam">添加队伍</van-button>
   </div>
 </template>
 
@@ -9,15 +9,15 @@
   import {useRouter} from "vue-router";
   import TeamCardList from "../../components/TeamCardList.vue";
   import {onMounted, ref} from "vue";
-  import myAxios from "../../plungins/myAxios.js";
+  import myAxios from "../../plugins/myAxios.js";
   import {showToast} from "vant";
   const router = useRouter();
-  const joinTeam = () =>{
+  const joinTeam = () => {
     router.push({
       path: "team/create"
     })
   }
-   const teamList = ref([])
+  const teamList = ref([])
   onMounted(async () =>{
     const res = await myAxios.get('/team/list',{});
     if(res.code===0){

@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import {ref} from "vue";
-import myAxios from "../../plungins/myAxios.js";
+import myAxios from "../../plugins/myAxios.js";
 import {showToast} from "vant";
 const userAccount = ref("");
 const password = ref("");
