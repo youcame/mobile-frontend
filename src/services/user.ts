@@ -15,7 +15,6 @@ export const getCurrentUser = async () =>{
     }else{
         showToast("未登录")
         const path = router.currentRoute;
-        console.log("123",path.value)
         //if(! whiteList.includes(path.value?.path)) 
         await router.replace('/user/login')
     }

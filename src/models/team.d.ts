@@ -2,6 +2,7 @@ import UserType from "./user";
 
 type TeamType = {
     id: number,
+    creatorId: number,
     description: string,
     expireTime: Date,
     maxNum: number,
