@@ -17,17 +17,13 @@
     <van-tabbar @change="onChange" route>
       <van-tabbar-item icon="home-o" name="index" to="/">主页</van-tabbar-item>
       <van-tabbar-item icon="search" name="team" to="/team">队伍</van-tabbar-item>
-      <van-tabbar-item icon="friends-o" name="user" to="/user">个人</van-tabbar-item>
+      <van-tabbar-item icon="friends-o" name="user" to="/user/all">个人</van-tabbar-item>
     </van-tabbar>
-
   </div>
 </template>
 
 <script setup>
-
-import {showToast} from "vant";
 import {useRouter} from "vue-router";
-import Index from "../pages/user/Index.vue";
 
 const router = useRouter();
 const onChange = (index) => {};

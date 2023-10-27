@@ -29,9 +29,9 @@ const searchList = async (val = '')=>{
     }
   })
   if(res?.code===0){
-    teamList.value=res.data
+    teamList.value=res?.data;
   }else{
-    showToast(`获取队伍信息失败，${res?.description}`)
+    showToast(`获取队伍信息失败，${res?.description}`);
   }
 }
 const onSearch = async (val)=>{

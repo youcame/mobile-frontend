@@ -2,7 +2,7 @@
   <div v-if="user">
     <van-cell title="昵称" to="/user/edit" :value="user.username" is-link @click="toEdit('username','昵称',user.username)"/>
     <van-cell title="账户" :value="user.userAccount" />
-    <van-cell title="性别" to="/user/edit" :value="user.gender === 0 ? '男' : '女'" is-link @click="toEdit('gender','昵称',user.gender)"/>
+    <van-cell title="性别" to="/user/edit" :value="user.gender === 0 ? '男' : '女' " is-link @click="toEdit('gender','性别',user.gender)"/>
     <van-cell title="头像" to="/user/edit" :value="user.avatarUrl" is-link @click="toEdit('avatarUrl','头像',user.avatarUrl)">
       <img style="height: 48px" src="https://avatars.githubusercontent.com/u/103118339?v=4"/>
     </van-cell>

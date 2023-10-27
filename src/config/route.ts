@@ -7,11 +7,12 @@ import SearchResultPage from "../pages/user/SearchResultPage.vue"
 import UserLoginPage from "../pages/user/UserLoginPage.vue"
 import TeamCreatePage from "../pages/team/TeamCreatePage.vue";
 import TeamUpdatePage from "../pages/team/TeamUpdatePage.vue";
-
+import UserAllInfoPage from "../pages/user/UserAllInfoPage.vue";
 
 const routes = [
     { path: '/', component: Index },
     { path: '/team', component: TeamPage },
+    { path: '/user/all', component: UserAllInfoPage },
     { path: '/user', component: UserPage },
     { path: '/search', component: SearchPage},
     { path: '/user/edit', component: UserEditPage},

@@ -1,6 +1,6 @@
 <template>
   <van-form @submit="onSubmit">
-    <van-cell-group inset>
+    <van-cell-group inset v-model="formValue">
       <van-field
           v-model="formValue.name"
           name="队伍名称"
@@ -71,7 +71,7 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import myAxios from "../../plugins/myAxios.js";
-import {showToast} from "vant";
+import {showFailToast, showToast} from "vant";
 import {useRoute, useRouter} from "vue-router";
 const check = ref('1');
 const initValue = {
@@ -87,14 +87,20 @@ const router = useRouter();
 let formValue = ref({...initValue})
 onMounted(async ()=>{
   const {id} = route.query;
-  const res = await myAxios.get('/team',)
+  const res = await myAxios.get('/team/getById',{
+    params: {
+      "id": id,
+    }
+  })
+  formValue.value=res?.data;
+  formValue.value.status=String(formValue.value.status);
 })
 const onSubmit= async (value) => {
   const postData = {
     ...formValue.value,
     "status": parseInt(formValue.value.status),
   }
-  const res = await myAxios.post('/team/add', postData)
+  const res = await myAxios.post('/team/update', postData)
   if(res.code===0){
     showToast("更新队伍成功")
     await router.push({
