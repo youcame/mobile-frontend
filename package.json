@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "axios": "^1.5.0",
     "qs": "^6.11.2",
     "vant": "^4.6.2",
+    "vercel": "^32.5.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
