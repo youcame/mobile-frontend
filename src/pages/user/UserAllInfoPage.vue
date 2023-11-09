@@ -22,25 +22,14 @@ onMounted(async ()=>{
   const res = await getCurrentUser();
   user.value = res;
 })
-
-const toEdit = (editKey: string, editName: string,currentValue: string) => {
-  router.push({
-    path: "/user/edit",
-    query: {
-      editName,
-      editKey,
-      currentValue,
-    }
-  })
-}
 const viewMyTeam=()=>{
   router.push({
-    path: "/user"
+    path: "/user/team/create"
   })
 }
 const viewJoinTeam=()=>{
   router.push({
-    path: "/user"
+    path: "/user/team/join"
   })
 }
 const logout=async ()=>{

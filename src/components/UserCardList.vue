@@ -20,6 +20,7 @@ import UserType from "../models/user";
 interface UserListCardProps{
   userList: UserType[],
 }
+
 const props = defineProps<UserListCardProps>()
 </script>
 

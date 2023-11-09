@@ -11,7 +11,8 @@ type TeamType = {
     status: number,
     createTime: Date,
     updateTime: Date,
-    createUser?: UserType
+    createUser?: UserType,
+    isInTeam: boolean | false
 }
 
 export default TeamType

@@ -24,7 +24,9 @@
     </template>
     <template #footer>
       <van-button v-if="team.creatorId===currentUser?.id" size="small" type="primary" plain @click="doUpdateTeam(team.id)">更新队伍</van-button>
-      <van-button v-if="team.creatorId!==currentUser?.id" size="small" type="primary" plain @click="doJoinTeam(team.id,team.password)">加入队伍</van-button>
+      <van-button v-if="!team.isInTeam" size="small" type="primary" plain @click="doJoinTeam(team.id,team.password)">加入队伍</van-button>
+      <van-button v-if="team.creatorId!==currentUser?.id  && team?.isInTeam" size="small" type="danger" plain @click="doQuitTeam(team.id)">退出队伍</van-button>
+      <van-button v-if="team.creatorId===currentUser?.id" size="small" type="danger" plain @click="doDeleteTeam(team.id)">解散队伍</van-button>
     </template>
   </van-card>
 </template>
@@ -33,7 +35,7 @@
 import TeamType from "../models/team";
 import {teamStatusEnum} from "../constants/team.ts";
 import myAxios from "../plugins/myAxios.js";
-import {showFailToast, showSuccessToast, showToast} from "vant";
+import {showFailToast, showSuccessToast} from "vant";
 import teamLogo from "../assets/logo.jpg"
 import {getCurrentUser} from "../services/user";
 import {onMounted, ref} from "vue";
@@ -67,6 +69,30 @@ const doJoinTeam = async (id,password)=>{
   }
   else{
     showFailToast(`加入队伍失败! ${res?.description}`)
+  }
+}
+
+const doQuitTeam = async (id)=>{
+  const res = await myAxios.post('/team/quit',{
+    "id": id,
+  })
+  if(res?.code===0){
+    showSuccessToast("退出队伍成功")
+  }
+  else{
+    showFailToast(`退出队伍失败! ${res?.description}`)
+  }
+}
+
+const doDeleteTeam = async (id)=>{
+  const res = await myAxios.post('/team/delete', {
+    id
+  })
+  if(res?.code===0){
+    showSuccessToast("解散队伍成功")
+  }
+  else{
+    showFailToast(`解散队伍失败! ${res?.description}`)
   }
 }
 

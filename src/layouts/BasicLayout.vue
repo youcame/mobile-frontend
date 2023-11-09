@@ -15,7 +15,7 @@
       <router-view/>
     </div>
     <div style="text-align: center">
-      <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="color: dodgerblue;position: absolute;height:80px;bottom: 0;right: 25%">浙ICP备2023023407号-2</a>
+<!--      <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="color: dodgerblue;position: absolute;height:80px;bottom: 0;right: 25%">浙ICP备2023023407号-2</a>-->
     </div>
     <van-tabbar @change="onChange" route>
       <van-tabbar-item icon="home-o" name="index" to="/">主页</van-tabbar-item>

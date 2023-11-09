@@ -1,6 +1,6 @@
 import Index from "../pages/user/Index.vue";
 import TeamPage from "../pages/team/TeamPage.vue";
-import UserPage from "../pages/user/UserPage.vue"
+import UserPage from "../pages/user/UserUpdatePage.vue"
 import SearchPage from "../pages/user/SearchPage.vue";
 import UserEditPage from "../pages/user/UserEditPage.vue"
 import SearchResultPage from "../pages/user/SearchResultPage.vue"
@@ -8,7 +8,8 @@ import UserLoginPage from "../pages/user/UserLoginPage.vue"
 import TeamCreatePage from "../pages/team/TeamCreatePage.vue";
 import TeamUpdatePage from "../pages/team/TeamUpdatePage.vue";
 import UserAllInfoPage from "../pages/user/UserAllInfoPage.vue";
-
+import TeamMyJoinPage from "../pages/team/TeamMyJoinPage.vue";
+import TeamMyCreatePage from "../pages/team/TeamMyCreatePage.vue";
 const routes = [
     { path: '/', component: Index },
     { path: '/team', component: TeamPage },
@@ -19,7 +20,10 @@ const routes = [
     { path: '/user/list', component: SearchResultPage},
     { path: '/user/login', component: UserLoginPage},
     { path: '/team/create', component: TeamCreatePage },
-    { path: '/team/update', component: TeamUpdatePage }
+    { path: '/team/update', component: TeamUpdatePage },
+    { path: '/team/user/create', component: TeamUpdatePage },
+    { path: '/user/team/join', component: TeamMyJoinPage },
+    { path: '/user/team/create', component: TeamMyCreatePage }
 ]
 
 export default routes;

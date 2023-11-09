@@ -1,10 +1,13 @@
 <template>
+  <div align="center">
+    创建的队伍
+  </div>
   <div id="teamButton">
     <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch"/>
     <team-card-list :team-list="teamList" />
-<!--    <div style="margin: 10px 15px 0 15px">-->
-<!--      <van-button plain type="primary" @click="joinTeam" block>添加队伍</van-button>-->
-<!--    </div>-->
+    <div style="margin: 10px 15px 0 15px">
+      <van-button plain type="primary" @click="joinTeam" block>添加队伍</van-button>
+    </div>
     <van-empty v-if="! teamList|| teamList.length < 1" description="什么都没有哦~"/>
   </div>
 </template>
@@ -24,7 +27,7 @@ const joinTeam = () => {
   })
 }
 const searchList = async (val = '')=>{
-  const res = await myAxios.get('/team/list',{
+  const res = await myAxios.get('/team/list/myTeams',{
     params:{
       searchText: val,
       pageNum: 1,
