@@ -38,10 +38,10 @@
     </van-cell-group>
     <div style="margin: 16px;">
       <div style="margin: 10px 10px 0 10px">
-        <van-button block type="primary" plain @click="router.push({path: '/user/register'})">注册</van-button>
+        <van-button block type="primary" plain native-type="submit">登录</van-button>
       </div>
       <div style="margin: 10px 10px 0 10px">
-        <van-button block type="primary" plain native-type="submit">登录</van-button>
+        <van-button block type="primary" plain @click="router.push({path: '/user/register'})">注册</van-button>
       </div>
     </div>
   </van-form>
@@ -64,7 +64,7 @@ const onSubmit = async (values) => {
     showToast("成功");
     await router.replace('/');
   }else{
-    showToast("失败");
+    showToast(`登录失败,账户名或密码不正确`);
   }
   console.log('submit', values);
 };
