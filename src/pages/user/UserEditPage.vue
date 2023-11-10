@@ -7,9 +7,9 @@
         :placeholder="`请输入${editUser.editName}`"
     />
     <div style="margin: 16px;">
-      <van-button round block type="primary" native-type="submit">
-        提交
-      </van-button>
+      <div style="margin: 10px 10px 0 10px">
+        <van-button block type="primary" plain native-type="submit">提交</van-button>
+      </div>
     </div>
   </van-form>
 </template>
@@ -17,11 +17,12 @@
 <script setup lang="ts">
 
 import {useRoute, useRouter} from "vue-router";
-import {onMounted, ref} from "vue";
+import {onMounted, Ref, ref} from "vue";
 import myAxios from "../../plugins/myAxios.js";
 import {showToast, Toast} from "vant";
 import {getCurrentUser} from "../../services/user";
-const user = ref('')
+import UserType from "../../models/user";
+const user:Ref<UserType|null> = ref(null)
 const route = useRoute();
 const router = useRouter();
 const editUser = ref({
@@ -36,7 +37,7 @@ onMounted(async () =>{
 })
 const onSubmit = async () =>{
   const res = await myAxios.post('/user/update',{
-    'id': user.value.id,
+    'id': user.value?.id,
     [editUser.value.editKey]: editUser.value.currentValue,
   })
   if(res?.code === 0 && res.data === true){

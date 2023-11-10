@@ -34,6 +34,9 @@ const viewJoinTeam=()=>{
 }
 const logout=async ()=>{
   const res = await myAxios.post('/user/logout');
+  await router.push({
+    path: "/user/login"
+  })
   console.log(res)
 }
 </script>

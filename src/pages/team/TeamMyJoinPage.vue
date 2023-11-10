@@ -4,7 +4,7 @@
     </div>
   <div id="teamButton">
     <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch"/>
-    <team-card-list :team-list="teamList" />
+    <team-card-list :team-list="teamList" :is-my-join="true"/>
     <van-empty v-if="! teamList|| teamList.length < 1" description="什么都没有哦~"/>
   </div>
 </template>

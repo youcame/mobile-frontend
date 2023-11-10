@@ -4,7 +4,7 @@
   </div>
   <div id="teamButton">
     <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch"/>
-    <team-card-list :team-list="teamList" />
+    <team-card-list :team-list="teamList" :is-my-create="true"/>
     <div style="margin: 10px 15px 0 15px">
       <van-button plain type="primary" @click="joinTeam" block>添加队伍</van-button>
     </div>

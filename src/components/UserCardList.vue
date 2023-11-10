@@ -9,16 +9,26 @@
       <van-tag plain type="primary" v-for="tag in user.tags" style="margin-right: 4px;margin-top: 4px">{{tag}}</van-tag>
     </template>
     <template #footer>
-      <van-button size="mini">查看详情</van-button>
+      <van-button size="mini" to="user/detail" @click="toDetail(user.id)">查看详情</van-button>
     </template>
   </van-card>
 </template>
 
 <script setup lang="ts">
 import UserType from "../models/user";
+import {useRouter} from "vue-router";
+const router = useRouter();
 
 interface UserListCardProps{
   userList: UserType[],
+}
+const toDetail = (id)=>{
+  router.push({
+    path: "/user/detail",
+    query: {
+      id
+    }
+  })
 }
 
 const props = defineProps<UserListCardProps>()

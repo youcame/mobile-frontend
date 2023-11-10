@@ -1,10 +1,7 @@
 <template>
-<!--  <div align="center">-->
-<!--    我的队伍-->
-<!--  </div>-->
-
   <van-card
       v-for="team in teamList"
+      :key="team.id"
       :desc="team.description"
       :title="team.name"
       :thumb=teamLogo
@@ -19,14 +16,22 @@
         {{ '最大人数:'+team?.maxNum }}
       </div>
       <div v-if="team.createTime">
-        {{'创建时间:'+team.createTime}}
+        {{
+          '创建时间:' + formatDate(team.createTime)
+        }}
       </div>
     </template>
     <template #footer>
-      <van-button v-if="team.creatorId===currentUser?.id" size="small" type="primary" plain @click="doUpdateTeam(team.id)">更新队伍</van-button>
-      <van-button v-if="!team.isInTeam" size="small" type="primary" plain @click="doJoinTeam(team.id,team.password)">加入队伍</van-button>
-      <van-button v-if="team.creatorId!==currentUser?.id  && team?.isInTeam" size="small" type="danger" plain @click="doQuitTeam(team.id)">退出队伍</van-button>
-      <van-button v-if="team.creatorId===currentUser?.id" size="small" type="danger" plain @click="doDeleteTeam(team.id)">解散队伍</van-button>
+      <div v-if="isMyCreate===true">
+        <van-button v-if="team.creatorId===currentUser?.id" size="small" type="primary" plain @click="doUpdateTeam(team.id)">更新队伍</van-button>
+        <van-button v-if="team.creatorId===currentUser?.id" size="small" type="danger" plain @click="doDeleteTeam(team.id)">解散队伍</van-button>
+      </div>
+      <div v-if="isShowTotalPage===true">
+        <van-button v-if="!team.isInTeam" size="small" type="primary" plain @click="doJoinTeam(team.id,team.password)">加入队伍</van-button>
+      </div>
+      <div v-if="isMyJoin===true">
+        <van-button v-if="team.creatorId!==currentUser?.id  && team?.isInTeam" size="small" type="danger" plain @click="doQuitTeam(team.id)">退出队伍</van-button>
+      </div>
     </template>
   </van-card>
 </template>
@@ -40,8 +45,12 @@ import teamLogo from "../assets/logo.jpg"
 import {getCurrentUser} from "../services/user";
 import {onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
+import {formatDate} from "../../src/Utils/TimeUtil";
 interface TeamCardListProps{
-  teamList: TeamType
+  teamList: TeamType,
+  isMyCreate?: boolean,
+  isMyJoin?: boolean,
+  isShowTotalPage?: boolean,
 }
 
 const router =useRouter();

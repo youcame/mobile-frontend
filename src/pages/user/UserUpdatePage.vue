@@ -8,17 +8,19 @@
     </van-cell>
     <van-cell title="电话" to="/user/edit" :value="user.phone" is-link @click="toEdit('phone','电话',user.phone)"/>
     <van-cell title="邮箱" to="/user/edit" :value="user.email" is-link @click="toEdit('email','邮箱',user.email)"/>
-    <van-cell title="创建时间" :value="user.createTime"/>
+    <van-cell title="创建时间" :value="formatDate(user.createTime)"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import {useRouter} from "vue-router";
-import {onMounted, ref} from "vue";
+import {onMounted, Ref, ref} from "vue";
 import {getCurrentUser} from "../../services/user";
+import UserType from "../../models/user";
+import {formatDate} from "../../Utils/TimeUtil";
 
 const router = useRouter();
-const user = ref('')
+const user: Ref<UserType|null> = ref(null)
 onMounted(async ()=>{
   const res = await getCurrentUser();
   user.value = res;

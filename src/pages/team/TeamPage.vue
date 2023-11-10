@@ -1,7 +1,7 @@
 <template>
   <div id="teamButton">
     <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch"/>
-    <team-card-list :team-list="teamList" />
+    <team-card-list :team-list="teamList" is-show-total-page/>
 <!--    <div style="margin: 10px 15px 0 15px">-->
 <!--      <van-button plain type="primary" @click="joinTeam" block>添加队伍</van-button>-->
 <!--    </div>-->
@@ -18,11 +18,6 @@ import {showFailToast, showToast} from "vant";
 const router = useRouter();
 const teamList = ref([])
 const searchText = ref('')
-const joinTeam = () => {
-  router.push({
-    path: "team/create"
-  })
-}
 const searchList = async (val = '')=>{
   const res = await myAxios.get('/team/list',{
     params:{
@@ -31,7 +26,7 @@ const searchList = async (val = '')=>{
     }
   })
   if(res?.code===0){
-    teamList.value=res?.data;
+    teamList.value=res?.data.filter(team=> team.isInTeam===false);
   }else{
     showToast(`获取队伍信息失败，${res?.description}`);
   }
