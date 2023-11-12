@@ -22,7 +22,6 @@ const getRecommendUserInfo = async () => {
       pageNumber: 1
     },
   }).then(function (response) {
-    showToast('成功')
     // return response?.data?.records;
     return response?.data
   }).catch(function (error){

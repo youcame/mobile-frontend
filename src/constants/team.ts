@@ -3,3 +3,4 @@ export const teamStatusEnum = {
     1: "加密",
     2: "私有"
 }
+

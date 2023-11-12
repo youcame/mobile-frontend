@@ -61,7 +61,7 @@ const onSubmit = async (values) => {
     password: password.value,
   });
   if(res?.code === 0){
-    showToast("成功");
+    showToast("登录成功");
     await router.replace('/');
   }else{
     showToast(`登录失败,账户名或密码不正确`);

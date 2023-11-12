@@ -24,7 +24,6 @@ onMounted(async () => {
       return qs.stringify(params, { indices: false })
     }
   }).then(function (response) {
-    showToast('成功')
     console.log("response为：", response);
     return response.data;
   }).catch(function (error){

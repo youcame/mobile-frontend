@@ -13,7 +13,7 @@
     </template>
     <template #bottom>
       <div>
-        {{ '最大人数:'+team?.maxNum }}
+        {{"人数"}}<van-icon name="friends-o" />{{`${team?.teamNowNumber}/${team?.maxNum}`}}
       </div>
       <div v-if="team.createTime">
         {{

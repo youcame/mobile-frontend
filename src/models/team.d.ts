@@ -5,6 +5,7 @@ type TeamType = {
     creatorId: number,
     description: string,
     expireTime: Date,
+    teamNowNumber: number | 0,
     maxNum: number,
     name: string,
     password?: string,

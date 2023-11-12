@@ -23,7 +23,7 @@ const teamList = ref([])
 const searchText = ref('')
 const joinTeam = () => {
   router.push({
-    path: "team/create"
+    path: "/team/create"
   })
 }
 const searchList = async (val = '')=>{
