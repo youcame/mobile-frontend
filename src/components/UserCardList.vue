@@ -9,7 +9,7 @@
       <van-tag plain type="primary" v-for="tag in user.tags" style="margin-right: 4px;margin-top: 4px">{{tag}}</van-tag>
     </template>
     <template #footer>
-      <van-button size="mini" to="user/detail" @click="toDetail(user.id)">查看详情</van-button>
+      <van-button size="small" @click="toDetail(user.id)" type="primary" plain>查看详情</van-button>
     </template>
   </van-card>
 </template>
@@ -22,11 +22,12 @@ const router = useRouter();
 interface UserListCardProps{
   userList: UserType[],
 }
-const toDetail = (id)=>{
+const toDetail = (id: number)=>{
+  console.log(id);
   router.push({
     path: "/user/detail",
     query: {
-      id
+      id: id.toString(),
     }
   })
 }

@@ -93,7 +93,7 @@ import {useRouter} from "vue-router";
     const res = await myAxios.post('/team/add', postData)
     if(res.code===0){
       showToast("添加队伍成功")
-      router.push({
+      await router.push({
         path: '/team',
         replace: true
       })

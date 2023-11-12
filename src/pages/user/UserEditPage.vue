@@ -3,7 +3,7 @@
     <van-field
         v-model="editUser.currentValue"
         :name="editUser.editKey"
-        :label="editUser.editName"
+        :label="editUser.editName==='性别'? '性别(0:男,1:女)':editUser.editName"
         :placeholder="`请输入${editUser.editName}`"
     />
     <div style="margin: 16px;">

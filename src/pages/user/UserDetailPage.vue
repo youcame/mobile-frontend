@@ -1,52 +1,42 @@
 <template>
-  <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-    <user-card-list :user-list="userList"/>
-  </van-pull-refresh>
-  <van-empty v-if="!userList || userList.length < 1" description="什么都没有哦~"/>
+  <div v-if="user">
+    <van-cell title="昵称" :value="user.username"/>
+    <van-cell title="性别" :value="user.gender === 0 ? '男' : '女' "/>
+    <van-cell title="头像" :value="user.avatarUrl">
+      <img style="height: 48px" :src="user.avatarUrl"/>
+    </van-cell>
+    <van-cell title="电话" :value="user.phone"/>
+    <van-cell title="邮箱" :value="user.email"/>
+  </div>
+  <div style="margin: 10px 15px 0 15px">
+    <van-button plain type="primary" @click="addFriend" block>添加好友</van-button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import {useRoute, useRouter} from "vue-router";
+import {onMounted, Ref, ref} from "vue";
+import UserType from "../../models/user";
 import myAxios from "../../plugins/myAxios.js";
-import {showToast} from "vant";
-import UserCardList from "../../components/UserCardList.vue";
+import {showSuccessToast} from "vant";
 
-const userList = ref([])
-const isLoading = ref<boolean>(false);
-
-const getRecommendUserInfo = async () => {
-  // const userListData = await myAxios.get('/user/recommend',{
-  const userListData = await myAxios.get('/user/match',{
+const router = useRouter();
+const route = useRoute();
+const user: Ref<UserType|null> = ref(null)
+onMounted(async ()=>{
+  const id = route.query.id;
+  const res = await myAxios.get('/user/get',{
     params: {
-      pageSize: 8,
-      pageNumber: 1
-    },
-  }).then(function (response) {
-    // return response?.data?.records;
-    return response?.data
-  }).catch(function (error){
-    showToast('失败')
+      id: id,
+    }
   })
-  if(userListData){
-    userListData.forEach(user =>{
-      user.tags = JSON.parse(user.tags);
-    })
-    userList.value = userListData;
-  }
+  user.value = res?.data;
+})
+const addFriend = ()=>{
+  showSuccessToast("好友请求发送成功")
 }
-
-const onRefresh = () => {
-  setTimeout(() => {
-    showToast('刷新成功');
-    isLoading.value = false;
-    console.log(1);
-    getRecommendUserInfo();
-  }, 1000);
-};
-
-onMounted(async () => await getRecommendUserInfo())
 </script>
 
-<style scoped >
+<style scoped>
 
 </style>

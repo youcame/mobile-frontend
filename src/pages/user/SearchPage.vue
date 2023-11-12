@@ -27,7 +27,6 @@
 
 <script setup>
 import {ref} from 'vue';
-import {showToast} from 'vant';
 import {useRouter} from "vue-router";
 import {originTags} from "../../constants/user.ts";
 const router = useRouter();

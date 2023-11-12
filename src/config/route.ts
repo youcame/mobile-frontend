@@ -5,6 +5,7 @@ import SearchPage from "../pages/user/SearchPage.vue";
 import UserEditPage from "../pages/user/UserEditPage.vue"
 import SearchResultPage from "../pages/user/SearchResultPage.vue"
 import UserLoginPage from "../pages/user/UserLoginPage.vue"
+import MyTagsPage from "../pages/user/MyTagsPage.vue"
 import UserRegisterPage from "../pages/user/UserRegisterPage.vue"
 import TeamCreatePage from "../pages/team/TeamCreatePage.vue";
 import TeamUpdatePage from "../pages/team/TeamUpdatePage.vue";
@@ -17,14 +18,15 @@ const routes = [
     { path: '/team', component: TeamPage, title: "队伍列表"},
     { path: '/user/all', component: UserAllInfoPage, title: "个人中心"},
     { path: '/user', component: UserPage, title: "我的信息"},
-    { path: '/search', component: SearchPage},
-    { path: '/user/edit', component: UserEditPage,title: "编辑信息"},
+    { path: '/search', component: SearchPage, title: "搜索用户"},
+    { path: '/user/edit', component: UserEditPage, title: "编辑信息"},
     { path: '/user/list', component: SearchResultPage},
+    { path: '/user/tags', component: MyTagsPage, title: "我的标签"},
     { path: '/user/login', component: UserLoginPage},
     { path: '/user/register', component: UserRegisterPage},
     { path: '/team/create', component: TeamCreatePage },
     { path: '/team/update', component: TeamUpdatePage },
-    { path: '/team/detail', component: UserDetailPage },
+    { path: '/user/detail', component: UserDetailPage },
     { path: '/team/user/create', component: TeamUpdatePage },
     { path: '/user/team/join', component: TeamMyJoinPage },
     { path: '/user/team/create', component: TeamMyCreatePage }

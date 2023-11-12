@@ -1,18 +1,8 @@
 <template>
-  <form action="/public">
-    <van-search
-        v-model="searchText"
-        show-action
-        placeholder="请输入搜索关键词"
-        @search="onSearch"
-        @cancel="onCancel"
-        fixed
-    />
-  </form>
-  <van-divider content-position="left">已选标签</van-divider>
+  <van-divider content-position="left">我的标签</van-divider>
   <van-row gutter="8" style="{padding: 16px}">
     <van-col v-for="tag in activeIds">
-      <van-tag closeable size="small" type="success" @close="doClose(tag)">{{ tag }}</van-tag>
+      <van-tag closeable size="small" type="primary" @close="doClose(tag)" plain >{{ tag }}</van-tag>
     </van-col>
   </van-row>
   <van-tree-select
@@ -21,23 +11,33 @@
       :items="tags"
   />
   <div style="padding: 20px">
-    <van-button plain type="primary" loading-text="搜索中" @click="getResult" block>搜索</van-button>
+    <van-button plain type="primary" loading-text="保存中" @click="saveResult" block>保存</van-button>
   </div>
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import {useRouter} from "vue-router";
 import {originTags} from "../../constants/user.ts";
+import {getCurrentUser} from "../../services/user.ts";
+import myAxios from "../../plugins/myAxios.js";
+import {showFailToast, showSuccessToast} from "vant";
 const router = useRouter();
 //搜索结果
-const getResult = () =>{
-  router.push({
-    path: 'user/list',
-    query: {
-      tags: activeIds.value,
+const saveResult = async () =>{
+  try {
+    let res = await getCurrentUser();
+    res.tags = String(activeIds.value);
+    const result = await myAxios.post('/user/update', res);
+    if(result?.code===0){
+      showSuccessToast("保存成功");
+      await router.replace("/user/all");
+    }else {
+      showFailToast("保存失败");
     }
-  })
+  }catch (error){
+    showFailToast(error.message);
+  }
 }
 //搜索标签
 const searchText = ref('');
@@ -55,7 +55,7 @@ const onCancel = () => {
   tags.value = originTags;
 };
 //分类选择
-const activeIds = ref([]);
+const activeIds = ref([1]);
 const activeIndex = ref(0);
 //关闭
 const doClose = (tag) => {
@@ -63,6 +63,12 @@ const doClose = (tag) => {
     return item !== tag
   })
 }
+onMounted(async ()=>{
+  const res = await getCurrentUser();
+  const tags = res?.tags;
+  console.log(tags)
+  activeIds.value = JSON.parse(tags);
+})
 
 
 let tags = ref(originTags);

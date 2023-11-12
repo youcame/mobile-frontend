@@ -1,4 +1,9 @@
 <template>
+  <van-notice-bar
+      left-icon="volume-o"
+      scrollable
+      text="由于缓存原因，推荐页可能会延迟更新！"
+  />
   <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
     <user-card-list :user-list="userList"/>
   </van-pull-refresh>
@@ -44,7 +49,9 @@ const onRefresh = () => {
   }, 1000);
 };
 
-onMounted(async () => await getRecommendUserInfo())
+onMounted(async () => {
+  await getRecommendUserInfo()
+})
 </script>
 
 <style scoped >
