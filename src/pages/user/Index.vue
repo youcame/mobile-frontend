@@ -15,6 +15,7 @@ import {onMounted, ref} from "vue";
 import myAxios from "../../plugins/myAxios.js";
 import {showToast} from "vant";
 import UserCardList from "../../components/UserCardList.vue";
+import {getCurrentUser} from "../../services/user";
 
 const userList = ref([])
 const isLoading = ref<boolean>(false);
@@ -50,6 +51,7 @@ const onRefresh = () => {
 };
 
 onMounted(async () => {
+  await getCurrentUser();
   await getRecommendUserInfo()
 })
 </script>

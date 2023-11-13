@@ -23,13 +23,16 @@
     </template>
     <template #footer>
       <div v-if="isMyCreate===true">
+        <van-button size="small" type="primary" plain @click="()=>{router.push(`/team/member?teamId=${team.id}`)}">查看成员</van-button>
         <van-button v-if="team.creatorId===currentUser?.id" size="small" type="primary" plain @click="doUpdateTeam(team.id)">更新队伍</van-button>
         <van-button v-if="team.creatorId===currentUser?.id" size="small" type="danger" plain @click="doDeleteTeam(team.id)">解散队伍</van-button>
       </div>
       <div v-if="isShowTotalPage===true">
+        <van-button size="small" type="primary" plain @click="()=>{router.push(`/team/member?teamId=${team.id}`)}">查看成员</van-button>
         <van-button v-if="!team.isInTeam" size="small" type="primary" plain @click="doClickAdd(team)">加入队伍</van-button>
       </div>
       <div v-if="isMyJoin===true">
+        <van-button size="small" type="primary" plain @click="()=>{router.push(`/team/member?teamId=${team.id}`)}">查看成员</van-button>
         <van-button v-if="team.creatorId!==currentUser?.id  && team?.isInTeam" size="small" type="danger" plain @click="doQuitTeam(team.id)">退出队伍</van-button>
       </div>
     </template>

@@ -3,6 +3,7 @@
     <van-cell title="昵称" :value="user.username" />
     <van-cell title="详细信息" to="/user" is-link/>
     <van-cell title="我的标签" is-link to="/user/tags"/>
+    <van-cell title="我的好友" is-link to="/user/myFriend"/>
     <van-cell title="我的队伍" is-link @click="viewMyTeam" />
     <van-cell title="加入的队伍" is-link @click="viewJoinTeam"/>
     <div style="margin: 10px 15px 0 15px">

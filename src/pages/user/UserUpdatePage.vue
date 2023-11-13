@@ -3,6 +3,7 @@
     <van-cell title="昵称" to="/user/edit" :value="user.username" is-link @click="toEdit('username','昵称',user.username)"/>
     <van-cell title="账户" :value="user.userAccount" />
     <van-cell title="性别" to="/user/edit" :value="user.gender === 0 ? '男' : '女' " is-link @click="toEdit('gender','性别',user.gender)"/>
+    <van-cell title="简介" to="/user/edit" :value="user.profile" is-link @click="toEdit('profile','简介',user.profile)"/>
     <van-cell title="头像" to="/user/edit" :value="user.avatarUrl" is-link @click="toEdit('avatarUrl','头像url',user.avatarUrl)">
       <img style="height: 48px" :src="user.avatarUrl"/>
     </van-cell>

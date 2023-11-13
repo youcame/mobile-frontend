@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    FriendCardList: typeof import('./src/components/FriendCardList.vue')['default']
+    FriendRequestCardList: typeof import('./src/components/FriendRequestCardList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TeamCardList: typeof import('./src/components/TeamCardList.vue')['default']
@@ -16,6 +18,8 @@ declare module 'vue' {
     VanCell: typeof import('vant/es')['Cell']
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanCol: typeof import('vant/es')['Col']
+    VanCollapse: typeof import('vant/es')['Collapse']
+    VanCollapseItem: typeof import('vant/es')['CollapseItem']
     VanDatePicker: typeof import('vant/es')['DatePicker']
     VanDialog: typeof import('vant/es')['Dialog']
     VanDivider: typeof import('vant/es')['Divider']
