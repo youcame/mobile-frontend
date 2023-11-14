@@ -2,7 +2,7 @@ import axios from "axios";
 // Set config defaults when creating the instance
 const isDev = process.env.NODE_ENV == 'development'
 const myAxios = axios.create({
-    baseURL: isDev?'http://localhost:8082/api': 'api.chinosama.cn/api'
+    baseURL: isDev?'http://localhost:8082/api': 'http://api.chinosama.cn/api'
 });
 
 myAxios.defaults.withCredentials = true;
