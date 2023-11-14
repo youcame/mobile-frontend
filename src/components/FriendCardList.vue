@@ -24,7 +24,7 @@ interface UserListCardProps{
   userList: UserType[],
 }
 const toDetail = (id: number)=>{
-  console.log(id);
+  //console.log(id);
   router.push({
     path: "/user/detail",
     query: {

@@ -39,7 +39,6 @@ const logout=async ()=>{
   await router.push({
     path: "/user/login"
   })
-  console.log(res)
 }
 </script>
 

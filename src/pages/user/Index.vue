@@ -45,7 +45,7 @@ const onRefresh = () => {
   setTimeout(() => {
     showToast('刷新成功');
     isLoading.value = false;
-    console.log(1);
+    //console.log(1);
     getRecommendUserInfo();
   }, 1000);
 };

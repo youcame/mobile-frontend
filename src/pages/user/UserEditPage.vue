@@ -30,7 +30,7 @@ const editUser = ref({
   editKey: route.query.editKey,
   currentValue: route.query.currentValue,
 })
-console.log(route.query);
+//console.log(route.query);
 onMounted(async () =>{
   const res = await getCurrentUser()
   user.value = res

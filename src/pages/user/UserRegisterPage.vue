@@ -73,7 +73,6 @@ const onSubmit = async (values) => {
   }else{
     showToast(`注册失败,${res?.description}`);
   }
-  console.log('submit', values);
 };
 </script>
 

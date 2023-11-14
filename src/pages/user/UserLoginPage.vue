@@ -66,7 +66,6 @@ const onSubmit = async (values) => {
   }else{
     showToast(`登录失败,账户名或密码不正确`);
   }
-  console.log('submit', values);
 };
 </script>
 

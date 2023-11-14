@@ -24,10 +24,10 @@ onMounted(async () => {
       return qs.stringify(params, { indices: false })
     }
   }).then(function (response) {
-    console.log("response为：", response);
+    //console.log("response为：", response);
     return response.data;
   }).catch(function (error){
-    console.log("请求tags失败",error)
+    //console.log("请求tags失败",error)
     showToast('失败')
   })
   if(userListData){

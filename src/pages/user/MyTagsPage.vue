@@ -66,7 +66,6 @@ const doClose = (tag) => {
 onMounted(async ()=>{
   const res = await getCurrentUser();
   const tags = res?.tags;
-  console.log(tags)
   activeIds.value = JSON.parse(tags);
 })
 
