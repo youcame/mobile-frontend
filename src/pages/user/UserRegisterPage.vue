@@ -21,7 +21,7 @@
           v-model="userAccount"
           name="userAccount"
           label="账号"
-          placeholder="账号"
+          placeholder="请输入账号"
           :rules="[{ required: true, message: '请填写账号' }]"
       />
       <van-field
