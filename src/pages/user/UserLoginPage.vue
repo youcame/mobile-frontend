@@ -5,7 +5,7 @@
       <!-- 图片在主标题左边 -->
       <img
           style="max-width: 60px; max-height: 60px; margin-right: 16px;"
-          src="https://avatars.githubusercontent.com/u/103118339?v=4"
+          src="https://hzh-1318734603.cos.ap-shanghai.myqcloud.com/main.jpg"
           alt="Avatar"
       />
 
